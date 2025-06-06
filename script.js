@@ -6,20 +6,23 @@ toggleButton.addEventListener('click', () => {
 });
 
 // Send message
-// Send message
 function sendMessage(e) {
   e.preventDefault();
   const input = document.getElementById('userInput');
   const text = input.value.trim();
+
   if (text !== "") {
     appendMessage(text, "user");
     input.value = "";
 
-    // Send to backend
+    // Get current mode
+    const mode = document.body.classList.contains('light') ? 'Light Mode' : 'Dark Mode';
+
+    // Send to backend with mode info included
     fetch("https://07a0-34-75-75-243.ngrok-free.app/generate", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ prompt: text })
+      body: JSON.stringify({ prompt: `(${mode}) ${text}` })
     })
     .then(res => res.json())
     .then(data => {
@@ -27,7 +30,7 @@ function sendMessage(e) {
     })
     .catch(error => {
       console.error("Error:", error);
-      appendMessage("Error reaching backend.", "bot");
+      appendMessage("❌ Error reaching backend.", "bot");
     });
   }
 }

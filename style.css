@@ -107,7 +107,17 @@ body {
 }
 
 .message.user {
-  align-self: flex-end;
-  background-color: var(--button-bg);
-  color: white;
+  text-align: right;
+  background: #cce5ff;
+  margin: 8px;
+  padding: 8px;
+  border-radius: 10px;
+}
+
+.message.bot {
+  text-align: left;
+  background: #e2e2e2;
+  margin: 8px;
+  padding: 8px;
+  border-radius: 10px;
 }

@@ -15,15 +15,15 @@ function sendMessage(e) {
     appendMessage(text, "user");
     input.value = "";
 
-    // Get current mode
+    // Get current theme mode
     const mode = document.body.classList.contains('light') ? 'Light Mode' : 'Dark Mode';
 
-    // Send to backend with mode info included
+    // Send to backend
     fetch("https://e087-34-75-75-243.ngrok-free.app/generate", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ prompt: "your prompt here" })
-})
+      body: JSON.stringify({ prompt: `(${mode}) ${text}` })
+    })
     .then(res => res.json())
     .then(data => {
       appendMessage(data.response, "bot");

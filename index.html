@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Project K</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="top-bar">
+    <span>Project K</span>
+    <button id="modeToggle">🌙</button>
+  </header>
+
+  <main class="chat-body" id="chatBody">
+    <!-- Chat messages go here -->
+  </main>
+
+  <footer class="chat-footer">
+    <form class="chat-input" onsubmit="sendMessage(event)">
+      <input type="text" id="userInput" placeholder="Ask your query..." autocomplete="off" />
+      <button type="submit">Send</button>
+    </form>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

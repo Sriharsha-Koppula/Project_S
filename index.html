@@ -7,15 +7,18 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- Top Bar -->
   <header class="top-bar">
     <span>Project S</span>
     <button id="modeToggle">🌙</button>
   </header>
 
+  <!-- Chat Area -->
   <main class="chat-body" id="chatBody">
-    <!-- Chat messages will be added here -->
+    <!-- Messages will be appended here -->
   </main>
 
+  <!-- Footer with Input -->
   <footer class="chat-footer">
     <form class="chat-input" onsubmit="sendMessage(event)">
       <input type="text" id="userInput" placeholder="Ask your query..." autocomplete="off" />
@@ -23,6 +26,7 @@
     </form>
   </footer>
 
-  <script src="script.js?v=2"></script>
+  <!-- JavaScript -->
+  <script src="script.js"></script>
 </body>
 </html>

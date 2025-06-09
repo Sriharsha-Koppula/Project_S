@@ -19,7 +19,7 @@ function sendMessage(e) {
     const mode = document.body.classList.contains('light') ? 'Light Mode' : 'Dark Mode';
 
     // Send to backend
-    fetch("https://9490-34-142-151-182.ngrok-free.app/generate", {
+    fetch("https://bc1b-34-142-151-182.ngrok-free.app/generate", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ prompt: `(${mode}) ${text}` })

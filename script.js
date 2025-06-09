@@ -1,11 +1,11 @@
-// 🌗 Toggle light/dark mode
+// Toggle light/dark mode
 const toggleButton = document.getElementById('modeToggle');
 toggleButton.addEventListener('click', () => {
   document.body.classList.toggle('light');
   toggleButton.textContent = document.body.classList.contains('light') ? '🌞' : '🌙';
 });
 
-// ✉️ Send message
+// Send message
 function sendMessage(e) {
   e.preventDefault();
   const input = document.getElementById('userInput');
@@ -15,9 +15,10 @@ function sendMessage(e) {
     appendMessage(text, "user");
     input.value = "";
 
+    // Get current theme mode
     const mode = document.body.classList.contains('light') ? 'Light Mode' : 'Dark Mode';
 
-    // Send prompt to backend
+    // Send to backend
     fetch("http://127.0.0.1:8000/generate", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -25,13 +26,7 @@ function sendMessage(e) {
     })
     .then(res => res.json())
     .then(data => {
-      // Split response line by line
-      const lines = (data.response || "").split("\n");
-      lines.forEach(line => {
-        if (line.trim() !== "") {
-          appendMessage(line.trim(), "bot");
-        }
-      });
+      appendMessage(data.response, "bot");
     })
     .catch(error => {
       console.error("Error:", error);
@@ -40,12 +35,20 @@ function sendMessage(e) {
   }
 }
 
-// 🧱 Append message to chat window
+// Append message to chat
 function appendMessage(msg, sender) {
   const chatBody = document.getElementById('chatBody');
   const msgDiv = document.createElement('div');
   msgDiv.classList.add('message', sender);
-  msgDiv.textContent = msg;
+  msgDiv.innerHTML = formatParagraphs(msg); // Format as paragraphs
   chatBody.appendChild(msgDiv);
   chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+// Format text into paragraphs
+function formatParagraphs(text) {
+  return text
+    .split(/\n\s*\n/)                // Split on empty lines
+    .map(p => `<p>${p.trim()}</p>`)  // Wrap each part in <p> tags
+    .join("");
 }

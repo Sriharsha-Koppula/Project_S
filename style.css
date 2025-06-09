@@ -5,6 +5,8 @@
   --input-bg: #40414f;
   --button-bg: #10a37f;
   --button-hover: #0e9272;
+  --user-bg: #cce5ff;
+  --bot-bg: #e2e2e2;
 }
 
 body.light {
@@ -14,6 +16,8 @@ body.light {
   --input-bg: #ffffff;
   --button-bg: #0d9488;
   --button-hover: #0a8278;
+  --user-bg: #d0ebff;
+  --bot-bg: #dddddd;
 }
 
 * {
@@ -53,6 +57,8 @@ body {
 
 .chat-body {
   flex: 1;
+  display: flex;
+  flex-direction: column;
   padding: 20px;
   overflow-y: auto;
 }
@@ -98,26 +104,27 @@ body {
 }
 
 .message {
-  margin-bottom: 12px;
-  padding: 10px 14px;
-  border-radius: 8px;
-  background-color: var(--input-bg);
-  width: fit-content;
-  max-width: 80%;
+  white-space: pre-wrap;
+  word-break: break-word;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 15px;
+  line-height: 1.5;
+  max-width: 70%;
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 
 .message.user {
-  text-align: right;
-  background: #cce5ff;
-  margin: 8px;
-  padding: 8px;
-  border-radius: 10px;
+  align-self: flex-end;
+  background-color: var(--user-bg);
+  color: #000;
+  margin-left: auto;
 }
 
 .message.bot {
-  text-align: left;
-  background: #e2e2e2;
-  margin: 8px;
-  padding: 8px;
-  border-radius: 10px;
+  align-self: flex-start;
+  background-color: var(--bot-bg);
+  color: #111;
+  margin-right: auto;
 }

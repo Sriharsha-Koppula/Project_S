@@ -15,30 +15,30 @@ function sendMessage(e) {
     appendMessage(text, "user");
     input.value = "";
 
-    // Get current theme mode
     const mode = document.body.classList.contains('light') ? 'Light Mode' : 'Dark Mode';
 
-    // Send to backend
     fetch("https://plumsoft-backend-442797114823.us-central1.run.app/ask", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ query: `(${mode}) ${text}` })  // FIXED
-})
-.then(res => res.json())
-.then(data => {
-  appendMessage(data.response, "bot");
-})
-.catch(error => {
-  console.error("Error:", error);
-  appendMessage("❌ Error reaching backend.", "bot");
-});
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query: `(${mode}) ${text}` })  // ✅ Fixed key
+    })
+    .then(res => res.json())
+    .then(data => {
+      appendMessage(data.response, "bot");
+    })
+    .catch(error => {
+      console.error("Error:", error);
+      appendMessage("❌ Error reaching backend.", "bot");
+    });
+  }
+}
 
 // Append message to chat
 function appendMessage(msg, sender) {
   const chatBody = document.getElementById('chatBody');
   const msgDiv = document.createElement('div');
   msgDiv.classList.add('message', sender);
-  msgDiv.innerHTML = formatParagraphs(msg); // Format as paragraphs
+  msgDiv.innerHTML = formatParagraphs(msg);
   chatBody.appendChild(msgDiv);
   chatBody.scrollTop = chatBody.scrollHeight;
 }
@@ -46,7 +46,7 @@ function appendMessage(msg, sender) {
 // Format text into paragraphs
 function formatParagraphs(text) {
   return text
-    .split(/\n\s*\n/)                // Split on empty lines
-    .map(p => `<p>${p.trim()}</p>`)  // Wrap each part in <p> tags
+    .split(/\n\s*\n/)
+    .map(p => `<p>${p.trim()}</p>`)
     .join("");
 }

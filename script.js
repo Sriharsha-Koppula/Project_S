@@ -20,20 +20,18 @@ function sendMessage(e) {
 
     // Send to backend
     fetch("https://plumsoft-backend-442797114823.us-central1.run.app/ask", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ prompt: `(${mode}) ${text}` })
-    })
-    .then(res => res.json())
-    .then(data => {
-      appendMessage(data.response, "bot");
-    })
-    .catch(error => {
-      console.error("Error:", error);
-      appendMessage("❌ Error reaching backend.", "bot");
-    });
-  }
-}
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ query: `(${mode}) ${text}` })  // FIXED
+})
+.then(res => res.json())
+.then(data => {
+  appendMessage(data.response, "bot");
+})
+.catch(error => {
+  console.error("Error:", error);
+  appendMessage("❌ Error reaching backend.", "bot");
+});
 
 // Append message to chat
 function appendMessage(msg, sender) {

@@ -18,10 +18,11 @@ function sendMessage(e) {
     const mode = document.body.classList.contains('light') ? 'Light Mode' : 'Dark Mode';
 
     fetch("https://plumsoft-backend-442797114823.us-central1.run.app/ask", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ query: `(${mode}) ${text}` })  // ✅ Fixed key
-    })
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ query: text })  // ✅ Clean query sent to backend
+})
+
     .then(res => res.json())
     .then(data => {
       appendMessage(data.response, "bot");

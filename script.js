@@ -19,7 +19,7 @@ function sendMessage(e) {
     const mode = document.body.classList.contains('light') ? 'Light Mode' : 'Dark Mode';
 
     // Send to backend
-    fetch("https://plumsoft-backend-442797114823.us-central1.run.app/generate", {
+    fetch("https://plumsoft-backend-442797114823.us-central1.run.app/ask", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ prompt: `(${mode}) ${text}` })
